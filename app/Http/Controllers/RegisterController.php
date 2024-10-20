@@ -106,7 +106,7 @@ class RegisterController extends Controller
         // APIリクエストを送信
         try {
             $title = urlencode($keyword);
-            $url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' . $title . '&country=JP';
+            $url = 'https://www.googleapis.com/books/v1/volumes?' . 'q=isbn+title:' . $title . '&country=JP'; // q=以降の書き方で検索方法が変わる
 
             $client = new Client();
             $response = $client->get($url);

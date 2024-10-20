@@ -16,7 +16,7 @@
 @section('content')
 <div class="container">
     {{dd($book)}}
-    {{-- <h1>{{ $book->title }}</h1>
+    <h1>{{ $book->title }}</h1>
     <p>著者: {{ $book->author }}</p>
     <p>出版社: {{ $book->publisher }}</p>
     <p>価格: ¥{{ number_format($book->amount) }}</p>
@@ -54,7 +54,7 @@
         <textarea name="post_review" placeholder="レビュー内容" required></textarea>
         <input type="text" name="user_id" placeholder="ユーザーID" required>
         <button type="submit">投稿</button>
-    </form> --}}
+    </form>
 </div>
 @endsection
 

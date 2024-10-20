@@ -18,12 +18,16 @@ class ReviewController extends Controller
         $userId = Session::get("userId", 0);
 
         // ユーザー情報とその関連するレビューを取得
-        $user = User::with('reviews')->findOrFail($userId);
+        $user = User::with('reviews', "books")->findOrFail($userId);
+
+
+        $book = Book::where("id", $req->bookId)->first();
 
         // 必要ならレビューを取得
-        $book = $user->reviews;
+        $review = $user->reviews;
 
-        return view('bookdetail', compact('user', 'book'));
+
+        return view('bookdetail', compact('user', 'review', 'book'));
         // $userId = Session::get("userId",0);
         // $book = User::where("id",$userId)->get();
         // return view('/bookdetail', compact('book'));
@@ -75,4 +79,3 @@ class ReviewController extends Controller
         return redirect()->route('layouts.bookdetail', $bookId)->with('success', 'レビューが更新されました！');
     }
 }
-

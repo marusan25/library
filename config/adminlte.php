@@ -130,7 +130,7 @@ return [
         ],
         [
             'text' => '書籍一覧',
-            'url' => '#',
+            'url' => 'list',
             'icon' => 'fas fa-book-open'
         ],
     ],

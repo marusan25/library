@@ -4,6 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\LoginVerify;
 
+// 書籍一覧
+use App\Http\Controllers\ListController;
+
+// 書籍詳細（レビュー）
+use App\Http\Controllers\ReviewController;
+
 Route::middleware(LoginVerify::class)->group(function(){
     Route::controller(HomeController::class)->group(function () {
         Route::get('/', 'home')->name('home');
@@ -15,3 +21,11 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/login', 'loginCreate')->name('login_create');
     Route::post('/login', 'loginStore')->name('login_store');
 });
+// 書籍一覧
+Route::get('/list',[ListController::class,'list']);
+
+// 書籍詳細（レビュー）
+Route::post('/bookdetail', [ReviewController::class, 'show'])->name('books.show');
+Route::post('/bookdetail/{book}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::delete('/bookdetail/{book}/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+Route::put('/bookdetail/{book}/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');

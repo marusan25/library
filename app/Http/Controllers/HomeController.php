@@ -24,16 +24,19 @@ class HomeController extends Controller
     public function loginStore(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-        if(is_null($user)){
+        if (is_null($user)) {
             // userが見つからなかったとき
             return to_route('login_create');
         }
 
         // userが見つかったとき、パスワードがあってるかどうか
-        if(Hash::check($request->password, $user->password)){
+        if (Hash::check($request->password, $user->password)) {
             auth()->login($user);
-            $user = User::where("email",$request->email)->first();
-            Session::put('userId',$user->id);
+            $user = User::where("email", $request->email)->first();
+
+            Session::put('userId', $user->id);
+            Session::put('name', $user->name);
+            // dd(Session::get('userId'));
             // $request->sessdion->put('userId',$userId->id);
             return to_route('home');
         }

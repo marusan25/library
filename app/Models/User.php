@@ -38,6 +38,7 @@ class User extends Authenticatable
     }
     public function books()
     {
-        return $this->hasMany(Book::class);
+        // return $this->hasMany(Book::class);
+        return $this->hasManyThrough(Book::class, Review::class, 'user_id', 'id', 'id', 'book_id');
     }
 }

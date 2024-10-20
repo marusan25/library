@@ -15,47 +15,70 @@
 
 @section('content')
 <div class="container">
-    {{dd($book)}}
-    <h1>{{ $book->title }}</h1>
-    <p>著者: {{ $book->author }}</p>
-    <p>出版社: {{ $book->publisher }}</p>
-    <p>価格: ¥{{ number_format($book->amount) }}</p>
-    <img src="{{ $book->thumbnail_path }}" alt="Thumbnail">
-    <p>{{ $book->description }}</p>
+    {{-- {{dd($records)}} --}}
+  
+    @foreach ($records as $record)
+    @if ($loop->first)
+    <h1>{{ $record->book->title }}</h1>
+    <p>著者: {{ $record->book->author }}</p>
+    <p>出版社: {{ $record->book->publisher }}</p>
+    <p>価格: ¥{{ number_format($record->book->amount) }}</p>
+    <img src="{{ $record->book->thumbnail_path }}" alt="Thumbnail">
+    <p>{{ $record->book->description }}</p>
+    
+    @endif
+    @endforeach
+    <p id="target">平均点:{{$avg}}点</p>
 
     <h2>レビュー一覧</h2>
-    @foreach ($book->reviews as $review)
+   
         <div>
-            <p>スコア: {{ $review->score }}</p>
-            <p>コメント: {{ $review->post_review }}</p>
-            <p>投稿者: {{ $review->user_id }}</p>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+            @foreach ($records as $record)
+            <p>スコア: {{ $record->score }}</p>
+            <p>コメント: {{ $record->content }}</p>
+            <p>投稿者: {{ $record->user->name }}</p>
 
             <!-- 編集・削除フォーム -->
-            <form action="{{ route('reviews.destroy', [$book->id, $review->id]) }}" method="POST">
+            {{-- {{dd(Session::get('userId'))}} --}}
+            @if($record->user->id === Session::get('userId',0))
+            <form action="{{ route('reviews.destroy', [$record->book->id, $record->id]) }}" method="POST">
                 @csrf
-                @method('DELETE')
+                {{-- @method('DELETE') --}}
                 <button type="submit">削除</button>
             </form>
 
-            <form action="{{ route('reviews.update', [$book->id, $review->id]) }}" method="POST">
+            <form action="{{ route('reviews.update', [$record->book->id, $record->id]) }}" method="POST">
                 @csrf
-                @method('PUT')
-                <input type="text" name="post_review" value="{{ $review->post_review }}">
-                <input type="number" name="score" value="{{ $review->score }}" min="1" max="5">
+                {{-- @method('PUT') --}}
+                {{-- <input type="text" name="post_review" value="{{ $record->content }}">
+                <input type="number" name="score" value="{{ $record->score }}" min="1" max="5"> --}}
                 <button type="submit">更新</button>
             </form>
+            @endif
+            @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
-    @endforeach
 
+
+
+    
     <h2>レビューを追加</h2>
-    <form action="{{ route('reviews.store', $book->id) }}" method="POST">
+    <form action="/reviewresult" method="POST">
         @csrf
+        @foreach ($records as $record)
+        <input type="hidden" name="book_id" value="{{$record->book->id}}">
+        @endforeach
         <input type="number" name="score" placeholder="スコア (1-5)" min="1" max="5" required>
         <textarea name="post_review" placeholder="レビュー内容" required></textarea>
-        <input type="text" name="user_id" placeholder="ユーザーID" required>
+        <input type="hidden" name="user_id" placeholder="ユーザーID" value="{{Session::get('userId',0)}}">
         <button type="submit">投稿</button>
-    </form>
+    </form> 
 </div>
 @endsection
-
+<script>document.getByElementById("target").style.fontsize = "100px"</script>
 </html>

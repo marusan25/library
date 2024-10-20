@@ -41,9 +41,12 @@
                                     <td class="small align-middle text-nowrap">{{$record->publisher}}</td>
                                     <td class="small align-middle text-nowrap">{{number_format($record->amount)}}円</td>
                                     <td class="small align-middle"><img class="mx-3" style="height: 130px" src="{{$record->thumbnail_path}}" alt="サムネイル"></td>
-                                    <td class="small align-middle">{{Str::limit($record->description, 300, '...')}}</td>
+                                    <td class="small align-middle">{{Str::limit($record->description, 300, '...')}}
+                                        {{-- {{dd($record)}} --}}
+                                    </td>
                                     <td class="small align-middle">
-                                    <form action="{{ route('reviews.store', ['book' => $record]) }}" method="POST">
+                                       
+                                    <form action="{{ route('books.show', ['book' => $record]) }}" method="POST">
                                         @csrf
                                         {{-- <input type="hidden" name="bookId" value="{{$record->id}}"> --}}
                                         {{-- <input type="hidden" name="title" value="{{$record->title}}"> --}}

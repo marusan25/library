@@ -26,6 +26,6 @@ Route::get('/list',[ListController::class,'list']);
 
 // 書籍詳細（レビュー）
 Route::post('/bookdetail', [ReviewController::class, 'show'])->name('books.show');
-Route::post('/bookdetail/{book}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::post('/reviewresult', [ReviewController::class, 'store'])->name('reviews.store');
 Route::delete('/bookdetail/{book}/reviews/{review}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 Route::put('/bookdetail/{book}/reviews/{review}', [ReviewController::class, 'update'])->name('reviews.update');

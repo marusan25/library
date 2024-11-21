@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SAController;
 use App\Http\Middleware\LoginVerify;
 
 Route::middleware(LoginVerify::class)->group(function(){
@@ -15,3 +16,9 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/login', 'loginCreate')->name('login_create');
     Route::post('/login', 'loginStore')->name('login_store');
 });
+
+Route::controller(SAController::class)->group(function () {
+    Route::get('/search', 'search')->name('posts_index');
+});
+
+

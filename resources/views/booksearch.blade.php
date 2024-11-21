@@ -1,55 +1,62 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>検索</title>
-</head>
-<body>
+@extends('layouts.app')
 
-    <a href="/index.html">トップページに戻る</a>
-    <br>
+@section('title', '検索画面')
 
-    <h1>検索</h1>
+@section('content_header')
+<div class="col-6">
+    <h1>書籍検索</h1>
+</div>
+@endsection
+
+@section('content')
+
     <p>検索したい「書籍名」「著者名」「ISBNコード」(一部でもOK)を入力してください</p>
 
     <!-- 検索フォーム -->
     <div>
-        <form action="{{ route('posts_index') }}" method="GET">
-            <p>書籍名 <input type="text" name="title" required></p>
-            <p>著者名 <input type="text" name="author" required></p>
-            <p>ISBN <input type="text" name="isbn" required></p>
-            <input type="submit" value="検索">
-            <input type="reset" value="リセット">
-        </form>
-    </div>
-    <!-- 検索フォームここまで -->
+    <form action="/searchlist" method="POST" class="form-horizontal">
+        @csrf
+        
+        <!-- 書籍名 -->
+        <div class="form-group row">
+            <label for="title" class="col-sm-1 col-form-label">書籍名</label>
+            <div class="col-sm-4">
+                <input type="text" name="title" class="form-control" id="title" required>
+            </div>
+        </div>
 
-    <table>
-        <tr>
-            <th>書籍名</th><th>著者名</th><th>ISBN</th>
-        </tr>
+        <!-- 著者名 -->
+        <div class="form-group row">
+            <label for="author" class="col-sm-1 col-form-label">著者名</label>
+            <div class="col-sm-4">
+                <input type="text" name="author" class="form-control" id="author" required>
+            </div>
+        </div>
 
-        <!-- 保存されているレコードを一覧表示 -->
-        <!-- @forelse ($posts as $post)
-            <tr>
-                <td><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></td>
-                <td>{{ $post->author }}</td>
-                <td>{{ $post->isbn }}</td>
-            </tr>
-        @empty
-            <tr><td colspan="3">No posts!!</td></tr>
-        @endforelse -->
-        </table>
-</body>
-</html>
+        <!-- ISBN -->
+        <div class="form-group row">
+            <label for="isbn" class="col-sm-1 col-form-label">ISBN</label>
+            <div class="col-sm-4">
+                <input type="text" name="isbn" class="form-control" id="isbn" required>
+            </div>
+        </div>
 
-    <!--<form action ="search.php" method="post">
-        <p>書籍名 <input type="text" name="title" code="isbn" required></p>
-        <p>著者名 <input type="text" name="author" code="isbn" required></p>
-        <p>ISBN <input type="text" name="isbn" code="isbn" required></p>
-        <input type="submit" value="検索">
-        <input type="reset" value="リセット">
+        <!-- ボタン -->
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <input type="submit" value="検索" class="btn btn-primary">
+                <input type="reset" value="リセット" class="btn btn-secondary">
+            </div>
+        </div>
     </form>
+</div>
+    
+@endsection
 
-</body>
-</html>
+@push('js')
+{{-- 'javaScript' --}}
+@endpush
+
+@push('css')
+{{-- css --}}
+@endpush

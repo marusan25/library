@@ -21,7 +21,11 @@ Route::controller(HomeController::class)->group(function () {
 });
 
 Route::controller(SAController::class)->group(function () {
-    Route::get('/search', 'search')->name('posts_index');
+    Route::get('/booksearch', 'booksearch')->name('book_search');
+});
+
+Route::controller(SAController::class)->group(function () {
+    Route::post('/searchlist', 'searchlist')->name('search_list');
 });
 
 Route::controller(RegisterController::class)->group(function () {

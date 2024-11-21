@@ -120,7 +120,7 @@ return [
         ],
         [
             'text' => '書籍検索',
-            'url' => 'booksearch',
+            'url' => '/booksearch',
             'icon' => 'fas fa-search'
         ],
         [

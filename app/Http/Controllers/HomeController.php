@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\LoginRequest;
+
+
 
 class HomeController extends Controller
 {
@@ -19,17 +22,18 @@ class HomeController extends Controller
         return view('login');
     }
 
-    public function loginStore(Request $request)
+    public function loginStore(LoginRequest $request)
     {
         $user = User::where('email', $request->email)->first();
-        if(is_null($user)){
+        if (is_null($user)) {
             // userが見つからなかったとき
             return to_route('login_create');
         }
 
         // userが見つかったとき、パスワードがあってるかどうか
-        if(Hash::check($request->password, $user->password)){
+        if (Hash::check($request->password, $user->password)) {
             auth()->login($user);
+
             return to_route('home');
         }
 

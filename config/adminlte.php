@@ -97,7 +97,7 @@ return [
     'right_sidebar_scrollbar_auto_hide' => 'l',
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     // 'register_url' => 'register',
@@ -116,7 +116,7 @@ return [
         [
             'text' => 'ホーム',
             'url' => '/',
-            'icon'=> 'fas fa-home'
+            'icon' => 'fas fa-home'
         ],
         [
             'text' => '書籍検索',
@@ -125,7 +125,7 @@ return [
         ],
         [
             'text' => '書籍登録',
-            'url' => '#',
+            'url' => '/bookregister',
             'icon' => 'fas fa-plus'
         ],
         [
@@ -133,9 +133,6 @@ return [
             'url' => '#',
             'icon' => 'fas fa-book-open'
         ],
-        // [
-        //     'text' => 'ろぐあう'
-        // ]
     ],
 
     'filters' => [

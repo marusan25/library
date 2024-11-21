@@ -18,21 +18,31 @@
                     @csrf
                     <label for="small">Email</label>
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control " placeholder="Email">
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" value="{{ old('email') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
                             </div>
                         </div>
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <label for="small">Password</label>
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control " placeholder="Password">
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
+                        @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="offset-8 col-4">

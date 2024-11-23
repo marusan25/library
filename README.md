@@ -17,11 +17,16 @@ php artisan key:generate
 php artisan config:clear
 ```
 ```
-chmod -R 775 storage
+chmod -R 775 /var/www/html/library/storage
+```
+```
+chown -R www-data:www-data /var/www/html/library/storage
 ```
 ```
 chmod -R 775 bootstrap/cache
 ```
+
+
 ```
 php artisan migrate
 ```

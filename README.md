@@ -17,7 +17,7 @@ php artisan key:generate
 php artisan config:clear
 ```
 ```
-chmod -R 775 strage
+chmod -R 775 storage
 chmod -R 775 bootstrap/cache
 ```
 ```

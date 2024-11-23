@@ -12,7 +12,7 @@ cp .env.example .env
 ```
 php artisan key:generate
 ```
-- envにデータベースのコネクション名・データベース名・ユーザ名・パスワードを入力
+- envにデータベースのコネクション名(例：mysql)・ホスト名・データベース名・ユーザ名・パスワードを入力
 ```
 php artisan config:clear
 ```

@@ -24,4 +24,8 @@ class Review extends Model
     {
         return $this->belongsTo(Book::class);
     }
+
+    protected $casts = [
+        'reviewed_at' => 'datetime',
+    ];
 }

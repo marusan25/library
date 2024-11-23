@@ -10,7 +10,7 @@ class ListController extends Controller
   public function list()
   {
     $data=[
-        'books'=>Book::all()
+        'books'=>Book::paginate(5)
     ];
     return view('List.list',$data);
   }

@@ -3,7 +3,9 @@
 @section('title', '登録する書籍の検索結果')
 
 @section('content_header')
-
+    <div class="col-6">
+        <h1>書籍登録</h1>
+    </div>
 @endsection
 
 @section('content')
@@ -26,8 +28,8 @@
                                         <th class="small font-weight-bold text-center text-nowrap">ISBN</th>
                                         <th class="small font-weight-bold text-center text-nowrap">出版社</th>
                                         <th class="small font-weight-bold text-center text-nowrap">価格</th>
-                                        <th class="small font-weight-bold text-center text-nowrap">サムネイル</th>
-                                        <th class="small font-weight-bold text-center text-nowrap">詳細</th>
+                                        <th class="small font-weight-bold text-center text-nowrap">表紙</th>
+                                        <th class="small font-weight-bold text-center text-nowrap">本の詳細</th>
                                         <th class="small font-weight-bold text-center text-nowrap">登録</th>
                                     </tr>
                                 </thead>
@@ -77,10 +79,17 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            @else
-                                <p>該当する書籍が見つかりませんでした。</p>
+                            </table>
+                        @else
+                            <p>該当する書籍が見つかりませんでした。</p>
                         @endif
-                        </table>
+                        {{ $items->links() }}
+                        <style>
+                            .pagination {
+                                justify-content: center;
+                                display: flex;
+                            }
+                        </style>
                     </div>
                 </div>
             </div>

@@ -23,3 +23,6 @@ chmod -R 775 bootstrap/cache
 ```
 php artisan migrate
 ```
+```
+git checkout -b feature/各自のブランチ
+```

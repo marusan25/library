@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('book_id')->constrained();
             $table->integer('score');
             $table->text('content'); // https://qiita.com/Otake_M/items/3c761e1a5e65b04c6c0e
-            $table->dateTime('reviewed_at')
+            $table->dateTime('reviewed_at');
             $table->timestamps();
         });
     }

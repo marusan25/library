@@ -18,7 +18,7 @@ php artisan config:clear
 ```
 
 ---
-以下、環境次第でコマンドが変わるのでGPTに質問！
+以下、3つのchmodは環境次第でコマンドが変わるのでGPTに質問！
 ```
 chmod -R 775 storage
 ```

@@ -35,4 +35,14 @@ class HomeController extends Controller
 
         return to_route('login_create');
     }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+
+        session()->invalidate(); // セッションをクリア
+        session()->regenerateToken(); // セッションIDを再生成
+
+        return to_route('login_create');
+    }
 }

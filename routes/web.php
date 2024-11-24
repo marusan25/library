@@ -5,8 +5,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Middleware\LoginVerify;
 
 Route::middleware(LoginVerify::class)->group(function(){
-    Route::get('/', [HomeController::class,'home'])->name('home');
-
+    Route::controller(HomeController::class)->group(function () {
+        Route::get('/', 'home')->name('home');
+        Route::post('/logout', 'logout')->name('logout');
+    });
 });
 
 Route::controller(HomeController::class)->group(function () {

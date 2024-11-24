@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ログイン画面だにょ</title>
+    <title>ログイン画面</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.1.0/icheck-bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.min.css">
@@ -10,13 +10,13 @@
 <body class="login-page" style="min-height: 330.4px;">
     <div class="login-box">
         <div class="login-logo">
-            ログイン画面だにょ
+            ログイン画面
         </div>
         <div class="card">
             <div class="card-body login-card-body">
-                <form action="https://admin.kohakohatech.com/login" method="post">
-                    <input type="hidden" name="_token" value="wMq2nxHyUVwgzF8FuKk4cf8kpInD2qcyp0oRa0dP"
-                        autocomplete="off"> <label for="small">Email</label>
+                <form action="{{ route('login_store') }}" method="post">
+                    @csrf
+                    <label for="small">Email</label>
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control " placeholder="Email">
                         <div class="input-group-append">

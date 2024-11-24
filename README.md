@@ -40,13 +40,14 @@ git checkout -b feature/各自のブランチ
 <br>
 
 
-## ★adminLteの参考サイトです
+## ★adminLTEの参考サイトです
 https://qiita.com/amitsuoka/items/32c806bd3d66ee174704  
 ※ config/adminlte.phpを編集したら
 ```
 php artisan config:clear
 ```
 
+<br>
 
 ## ★fontawsome versionは5.1.54で！
 https://fontawesome.com/icons

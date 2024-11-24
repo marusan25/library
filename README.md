@@ -63,6 +63,14 @@ http://books.google.com/books/content?id=NpbgEAAAQBAJ&printsec=frontcover&img=1&
 
 <br>
 
+
+## データベース名
+### book_system
+
+
+<br>
+
+
 ## テーブル
 #### users
 |カラム名|データ型|内容|補足|

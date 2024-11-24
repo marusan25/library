@@ -1,4 +1,4 @@
-## cloneした人用
+## ★cloneした人用
 ```
 git clone https://github.com/marusan25/library.git
 ```
@@ -64,14 +64,14 @@ http://books.google.com/books/content?id=NpbgEAAAQBAJ&printsec=frontcover&img=1&
 <br>
 
 
-## データベース名
+## ★データベース名
 ### book_system
 
 
 <br>
 
 
-## テーブル
+## ★テーブル
 #### users
 |カラム名|データ型|内容|補足|
 |--------|------|------|------|

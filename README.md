@@ -16,11 +16,13 @@ php artisan key:generate
 ```
 php artisan config:clear
 ```
+
+以下、環境次第でコマンドが変わるのでGPTに質問！
 ```
-chmod -R 775 /var/www/html/library/storage
+chmod -R 775 storage
 ```
 ```
-chown -R www-data:www-data /var/www/html/library/storage
+chown -R www-data:www-data storage
 ```
 ```
 chmod -R 775 bootstrap/cache
@@ -28,7 +30,7 @@ chmod -R 775 bootstrap/cache
 
 
 ```
-php artisan migrate
+php artisan migrate --seed
 ```
 ```
 git checkout -b feature/各自のブランチ

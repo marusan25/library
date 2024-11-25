@@ -133,9 +133,6 @@ return [
             'url' => '#',
             'icon' => 'fas fa-book-open'
         ],
-        // [
-        //     'text' => 'ろぐあう'
-        // ]
     ],
 
     'filters' => [

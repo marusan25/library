@@ -31,6 +31,7 @@ class HomeController extends Controller
 
         // userが見つかったとき、パスワードがあってるかどうか
         if (Hash::check($request->password, $user->password)) {
+            auth()->login($user);
             
             return to_route('home');
         }

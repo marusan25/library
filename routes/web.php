@@ -21,10 +21,7 @@ Route::controller(HomeController::class)->group(function () {
 
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/bookregister', 'register')->name('book_register');
-
-});
-
-Route::controller(RegisterController::class)->group(function () {
     Route::post('/bookcheck', 'check')->name('book_check');
+
 });
 

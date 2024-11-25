@@ -7,42 +7,48 @@ use GuzzleHttp\Client;
 
 class RegisterController extends Controller
 {
-    
-     // 一覧表示
-     
-     public function register(Request $request)
+
+    // 一覧表示
+
+    public function register(Request $req)
     {
-        $data = [
-            'items' => null,
-            'keyword' => $request->keyword,
-        ];
+        return view("bookregister");
+    }
 
-        if (!empty($request->keyword)) {
-            // 検索キーワードあり
+    public function check(Request $req)
+    {
+        $items = null;
 
-            // 日本語で検索するためにURLエンコードする
-            $title = urlencode($request->keyword);
+        // 検索キーワードが空の場合
+        if (empty($req->keyword)) {
+            return redirect()->back()->withErrors(['キーワードを入力してください。']);
 
-           // APIを発行するURLを生成
-             $url = 'https://www.googleapis.com/books/v1/volumes?q=' . $title . '&country=JP&tbm=bks';
+        } else {
+            $keyword = $req->input('keyword'); // 検索キーワードがある場合
 
-         $client = new Client();
+            // // キーワードをURLエンコード
+            $title = urlencode($keyword);
 
-             // GETでリクエスト実行
+            // APIを発行するURLを生成
+            $url = 'https://www.googleapis.com/books/v1/volumes?q=isbn:' . $title . '&country=JP';
+
+            // Guzzle HTTPクライアントでリクエストを送信
+            $client = new Client();
             $response = $client->request("GET", $url);
 
-             $body = $response->getBody();
+            // レスポンスをJSON形式の配列に変換
+            $bodyArray = json_decode($response->getBody(), true);
 
-             // レスポンスのJSON形式を連想配列に変換
-             $bodyArray = json_decode($body, true);
+            // 書籍情報部分を取得
+            $items = $bodyArray;
+        };
 
-             // 書籍情報部分を取得
-             $items = $bodyArray['items'];
+        // データをビューに渡す
+        $data = [
+            'items' => $items,
+            'keyword' => $keyword,
+        ];
 
-             // レスポンスの中身を見る
-             //dd($items);
-         }
-
-         return view('bookregister', $data);
-     }
+        return view('bookcheck', $data);
+    }
 }

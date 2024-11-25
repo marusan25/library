@@ -125,7 +125,7 @@ return [
         ],
         [
             'text' => '書籍登録',
-            'url' => '/var/www/html/library/resources/views/bookregister.blade.php',
+            'url' => '/bookregister',
             'icon' => 'fas fa-plus'
         ],
         [

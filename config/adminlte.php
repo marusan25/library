@@ -116,7 +116,7 @@ return [
         [
             'text' => 'ホーム',
             'url' => '/',
-            'icon'=> 'fas fa-home'
+            'icon' => 'fas fa-home'
         ],
         [
             'text' => '書籍検索',
@@ -125,7 +125,7 @@ return [
         ],
         [
             'text' => '書籍登録',
-            'url' => '#',
+            'url' => '/var/www/html/library/resources/views/bookregister.blade.php',
             'icon' => 'fas fa-plus'
         ],
         [

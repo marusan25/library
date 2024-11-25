@@ -15,3 +15,5 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/login', 'loginCreate')->name('login_create');
     Route::post('/login', 'loginStore')->name('login_store');
 });
+
+//Route::post('/bookcheck', [HomeController::class,'book_check']);

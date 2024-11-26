@@ -10,7 +10,7 @@ use App\Http\Controllers\ReviewController;
 
 
 
-Route::middleware(LoginVerify::class)->group(function(){
+Route::middleware(LoginVerify::class)->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get('/', 'home')->name('home');
         Route::post('/logout', 'logout')->name('logout');
@@ -30,11 +30,13 @@ Route::controller(SAController::class)->group(function () {
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/bookregister', 'register')->name('book_register');
     Route::post('/bookcheck', 'check')->name('book_check');
-
+    Route::get('/bookcheck2', 'check2')->name('check2');
+    Route::get('/bookcheck', 'result')->name('book_back');
+    Route::post('/bookresult', 'result')->name('book_result');
 });
 
 // 書籍一覧
-Route::get('/list',[ListController::class,'list']);
+Route::get('/list', [ListController::class, 'list']);
 
 // 書籍詳細（レビュー）
 Route::post('/bookdetail', [ReviewController::class, 'show'])->name('books.show');

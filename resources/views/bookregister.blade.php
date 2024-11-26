@@ -24,8 +24,8 @@
                     </div>
                     <form action="/bookcheck" method="post">
                         @csrf
-                        キーワード:<input type="text" name="keyword" size="50">&nbsp;<input type="submit" value="検索"
-                            required>
+                        キーワード:<input type="text" name="keyword" size="50">&nbsp;<input type="submit" value="検索">
+                        <input type="reset" value="リセット">
                     </form>
                     @if ($errors->any())
                     @endif

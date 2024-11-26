@@ -34,7 +34,7 @@ class LoginRequest extends FormRequest
                 'required',
                 function ($attribute, $value, $fail) {
                     $user = User::where('email', $this->email)->first();
-                    if(!Hash::check($this->password, $user->password)){
+                    if(is_null($user) || !Hash::check($this->password, $user->password)){
                         $fail('パスワードが一致していません。');
                     }
                 }

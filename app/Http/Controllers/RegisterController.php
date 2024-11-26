@@ -78,7 +78,6 @@ class RegisterController extends Controller
         return view('bookcheck', [
             'items' => $paginatedItems,
             'keyword' => $keyword,
-            // 'paginatedItems' => $paginatedItems
         ]);
     }
 

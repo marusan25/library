@@ -14,8 +14,8 @@
         <li><strong>ISBN:</strong> {{ $isbn }}</li>
         <li><strong>出版社:</strong> {{ $publisher }}</li>
         <li><strong>価格:</strong> ¥{{ $price }}</li>
-        <li><strong>サムネイル:</strong> <img src="{{ $thumbnail_path }}" alt="thumbnail"></li>
-        <li><strong>説明:</strong> {{ $description }}</li>
+        <li><strong>表紙:</strong> <img src="{{ $thumbnail_path }}" alt="thumbnail"></li>
+        <li><strong>本の詳細:</strong> {{ $description }}</li>
     </ul>
 
 

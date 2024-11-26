@@ -20,34 +20,34 @@
                         <table class="table table-bordered table-striped">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th class="small font-weight-bold text-center">書籍番号</th>
-                                    <th class="small font-weight-bold text-center">ISBN<</th>
-                                    <th class="small font-weight-bold text-center">書籍名</th>
-                                    <th class="small font-weight-bold text-center">著者名</th>
-                                    <th class="small font-weight-bold text-center">出版社名</th>
-                                    <th class="small font-weight-bold text-center">価格</th>
-                                    <th class="small font-weight-bold text-center">サムネイルURL</th>
-                                    <th class="small font-weight-bold text-center">本の詳細</th>
-                                    <th class="small font-weight-bold text-center">レビュー</th>
+                                    <th class="small font-weight-bold text-center text-nowrap">書籍番号</th>
+                                    <th class="small font-weight-bold text-center text-nowrap">ISBN</th>
+                                    <th class="small font-weight-bold text-center text-nowrap">書籍名</th>
+                                    <th class="small font-weight-bold text-center text-nowrap">著者名</th>
+                                    <th class="small font-weight-bold text-center text-nowrap">出版社名</th>
+                                    <th class="small font-weight-bold text-center text-nowrap">価格</th>
+                                    <th class="small font-weight-bold text-center text-nowrap">サムネイルURL</th>
+                                    <th class="small font-weight-bold text-center text-nowrap">本の詳細</th>
+                                    <th class="small font-weight-bold text-center text-nowrap">レビュー</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($books as $record)
                                 <tr>
-                                    <td class="small">{{$record->id}}</td>
-                                    <td class="small">{{$record->isbn}}</td>
-                                    <td class="small">{{$record->title}}</td>
-                                    <td class="small">{{$record->author}}</td>
-                                    <td class="small">{{$record->publisher}}</td>
-                                    <td class="small">{{$record->amount}}</td>
-                                    <td class="small"><img src="{{$record->thumbnail_path}}" alt="サムネイル"></td>
-                                    <td class="small">{{$record->description}}</td>
-                                    <td class="small">
-                                    <form action="/bookdetail" method="POST">
+                                    <td class="small align-middle">{{$record->id}}</td>
+                                    <td class="small align-middle">{{$record->isbn}}</td>
+                                    <td class="small align-middle text-nowrap">{{$record->title}}</td>
+                                    <td class="small align-middle">{{$record->author}}</td>
+                                    <td class="small align-middle text-nowrap">{{$record->publisher}}</td>
+                                    <td class="small align-middle text-nowrap">{{number_format($record->amount)}}円</td>
+                                    <td class="small align-middle"><img class="mx-3" style="height: 130px" src="{{$record->thumbnail_path}}" alt="サムネイル"></td>
+                                    <td class="small align-middle">{{Str::limit($record->description, 300, '...')}}</td>
+                                    <td class="small align-middle">
+                                    <form action="{{ route('reviews.store', ['book' => $record]) }}" method="POST">
                                         @csrf
                                         <input type="hidden" name="bookId" value="{{$record->id}}">
                                         <input type="hidden" name="title" value="{{$record->title}}">
-                                        <input type="submit" value="レビュー">    
+                                        <input type="submit" class="btn btn-info btn-sm" value="レビュー">
                                     </form>
                                 </td>
                                 </tr>

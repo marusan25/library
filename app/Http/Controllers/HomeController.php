@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\LoginRequest;
 
 class HomeController extends Controller
 {
@@ -19,7 +20,7 @@ class HomeController extends Controller
         return view('login');
     }
 
-    public function loginStore(Request $request)
+    public function loginStore(LoginRequest $request)
     {
         $user = User::where('email', $request->email)->first();
         if(is_null($user)){

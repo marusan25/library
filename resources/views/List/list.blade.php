@@ -45,8 +45,8 @@
                                     <td class="small align-middle">
                                     <form action="{{ route('reviews.store', ['book' => $record]) }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="bookId" value="{{$record->id}}">
-                                        <input type="hidden" name="title" value="{{$record->title}}">
+                                        {{-- <input type="hidden" name="bookId" value="{{$record->id}}"> --}}
+                                        {{-- <input type="hidden" name="title" value="{{$record->title}}"> --}}
                                         <input type="submit" class="btn btn-info btn-sm" value="レビュー">
                                     </form>
                                 </td>

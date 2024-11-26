@@ -34,8 +34,9 @@ class ReviewController extends Controller
     }
 
     // レビューを追加
-    public function store(Request $request, $bookId)
+    public function store(Request $request, Book $book)
     {
+        dd($book);
         $request->validate([
             'score' => 'required|integer|min:1|max:5',
             'post_review' => 'required|string|max:100',

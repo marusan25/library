@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/plus.png">
     <title>レビューの削除確認</title>
 </head>
 <body>

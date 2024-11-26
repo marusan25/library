@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>レビューの修正</title>
+    <link rel="icon" type="image/png" href="images/book.png">
 </head>
 <body>
     <h1>投稿レビューの修正</h1>

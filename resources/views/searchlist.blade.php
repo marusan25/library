@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<link rel="icon" type="image/png" href="images/search.png">
 @section('content_header')
     <div class="col-6">
         <h1>検索結果</h1>
@@ -26,11 +26,11 @@
                             </thead>
                             <tbody>
                                 @foreach ($books as $book)
-                                <tr>
-                                    <td class="small">{{$book->title}}</td>
-                                    <td class="small">{{$book->author}}</td>
-                                    <td class="small">{{$book->isbn}}</td>
-                                </tr>
+                                    <tr>
+                                        <td class="small">{{ $book->title }}</td>
+                                        <td class="small">{{ $book->author }}</td>
+                                        <td class="small">{{ $book->isbn }}</td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>

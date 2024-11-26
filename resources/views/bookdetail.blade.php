@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', '書籍詳細')
-
+<link rel="icon" type="image/png" href="images/book.png">
 @section('content_header')
 <h2>書籍詳細</h2>
 @endsection

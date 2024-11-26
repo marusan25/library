@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/book.png">
     <title>{{$title}}</title>
 </head>
 <body>

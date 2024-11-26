@@ -3,9 +3,7 @@
 @section('title', 'ホーム')
 
 @section('content_header')
-
-        <h1>　</h1>
-    
+<h2> </h2>
 @endsection
 
 @section('content')

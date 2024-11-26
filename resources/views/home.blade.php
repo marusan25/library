@@ -3,53 +3,32 @@
 @section('title', 'ホーム')
 
 @section('content_header')
-    <div class="col-6">
-        <h1>ホーム</h1>
-    </div>
+
+        <h1>　</h1>
+    
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    サンプル
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th class="small font-weight-bold text-center">列サンプル</th>
-                                    <th class="small font-weight-bold text-center">列サンプル</th>
-                                    <th class="small font-weight-bold text-center">列サンプル</th>
-                                    <th class="small font-weight-bold text-center">列サンプル</th>
-                                    <th class="small font-weight-bold text-center">列サンプル</th>
-                                    <th class="small font-weight-bold text-center">列サンプル</th>
-                                    <th class="small font-weight-bold text-center">列サンプル</th>
-                                    <th class="small font-weight-bold text-center">列サンプル</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (range(0, 10) as $i)
-                                <tr>
-                                    <td class="small">サンプルデータ</td>
-                                    <td class="small">サンプルデータ</td>
-                                    <td class="small">サンプルデータ</td>
-                                    <td class="small">サンプルデータ</td>
-                                    <td class="small">サンプルデータ</td>
-                                    <td class="small">サンプルデータ</td>
-                                    <td class="small">サンプルデータ</td>
-                                    <td class="small">サンプルデータ</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+<div class="container d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="row text-center">
+        <!-- 左側の画像 -->
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+            <img src="{{ asset('images/tosyokan.png') }}" alt="本のアイコン" style="width: 400%; max-width: 1000px;">
+        </div>
+
+        <!-- 右側のテキストとボタン -->
+        <div class="col-md-6"><br><br>
+            <h2>管理システムへようこそ！</h2><br>
+            <div class="btn-group-vertical" style="margin-top: 25px;">
+                <a href="/" class="btn btn-success btn-lg mb-3">おすすめの本</a><br>
+                <a href="/" class="btn btn-primary btn-lg">ランキング★</a>
             </div>
         </div>
     </div>
+</div>
+<footer class="footer text-center mt-4">
+    <p>© 2024 ポリテクセンター関西. 宇賀s.</p>
+</footer>
 @endsection
 
 @push('js')
@@ -57,5 +36,5 @@
 @endpush
 
 @push('css')
-    {{-- css --}}
+{{-- 'css' --}}
 @endpush

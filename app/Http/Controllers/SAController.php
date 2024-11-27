@@ -6,54 +6,43 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 
 class SAController extends Controller
-{   
+{
     public function booksearch(Request $req)
     {
         return view('booksearch');
-
     }
 
     public function searchlist(Request $req)
     {
-        if (!isset($req->search) || $req->search === "") {
-            return redirect("/"); //インデックスに戻る
+        $books = null;
+
+        if (!is_null($req->title) || !is_null($req->author) || !is_null($req->isbn)) {
+            $books = Book::query()
+                ->when(!is_null($req->title), function($query) use ($req){
+                    $query->where('title', 'LIKE', "%{$req->title}%");
+                })
+                ->when(!is_null($req->author), function($query) use ($req){
+                    $query->where('author', 'LIKE', "%$req->author%");
+                })
+                ->when(!is_null($req->isbn), function($query) use ($req){
+                    $query->where('isbn', 'LIKE', "%$req->isbn%");
+                })
+                ->get();
         }
-        $search = $req->search;
-        $article = Book::where('title', 'LIKE', '%'.$search.'%')
-        ->orWhere('author', 'LIKE','%'.$search.'%')
-        ->orWhere('isbn', 'LIKE', '%'.$search.'%')
-        ->where('is_deleted', 0)
-        ->get();
 
-        //$article = Book::where('title', 'LIKE', '%$req->search%')
-        //->orWhere('author', 'LIKE', '%$req->search%')
-        //->orWhere('isbn', 'LIKE', '%$req->search%')
-        //->where('is_deleted', 0)
-        //->get();
+        if (is_null($books) || $books->isEmpty()) {
+            // TODO セッションにnullだった時のメッセージを保存
+            return to_route('book_search');
+        }
 
-        $count = $articles->count();
-        //$count = count($article);
+
+
+        $count = $books->count();
 
         return view('searchlist', [
-            'articles' => $articles, //検索結果のリスト
+            'books' => $books, //検索結果のリスト
             'count' => $count,       //検索結果の件数
         ]);
     }
 }
 
-//<!-- 検索結果の表示 -->
-//<h2>{{ $count }} 件の結果が見つかりました</h2>
-
-//@if ($count > 0)
-    //<ul>
-        //@foreach ($articles as $article)
-            //<li>
-                //<strong>タイトル:</strong> {{ $article->title }}<br>
-                //<strong>著者:</strong> {{ $article->author }}<br>
-                //<strong>ISBN:</strong> {{ $article->isbn }}<br>
-            //</li>
-        //@endforeach
-    //</ul>
-//@else
-    //<p>検索結果はありません。</p>
-//@endif

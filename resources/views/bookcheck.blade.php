@@ -3,9 +3,7 @@
 @section('title', '登録する書籍の検索結果')
 
 @section('content_header')
-    <div class="col-6">
-        <h1>登録する書籍の検索結果</h1>
-    </div>
+    
 @endsection
 
 @section('content')
@@ -19,10 +17,6 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        @foreach ($items as $item)
-                            <p>該当する書籍を登録してください。</p>
-                            <p>{{ $item['title'] }}</p>
-                        @endforeach
                         @if (!empty($items) && count($items) > 0)
                             <table class="table table-striped">
                                 <thead class="thead-dark">
@@ -42,9 +36,15 @@
                                         <tr>
                                             <td class="small align-middle">{{ $item['title'] }}</td>
                                             <td class="small align-middle">{{ $item['author'] }}</td>
-                                            <td class="small align-middle">{{ $item['isbn'] }}</td>
-                                            <td class="small align-middle">{{ $item['publisher'] }}</td>
-                                            <td class="small align-middle">{{ $item['price'] }}円</td>
+                                            <td class="small align-middle text-center">{{ $item['isbn'] }}</td>
+                                            <td class="small align-middle text-nowrap">{{ $item['publisher'] }}</td>
+                                            <td class="small align-middle text-nowrap">
+                                                @if ($item['price'] === '不明')
+                                                    不明
+                                                @else
+                                                    {{ $item['price'] }}円
+                                                @endif
+                                            </td>
                                             <td class="small align-middle">
                                                 @if (!empty($item['thumbnail_path']))
                                                     <img class="mx-3" style="height: 130px"
@@ -54,9 +54,10 @@
                                                     画像なし
                                                 @endif
                                             </td>
-                                            <td class="small align-middle">
+                                            <td class="small align-middle text-center">
                                                 {{ Str::limit($item['description'], 300, '...') }}</td>
-                                            <td>
+                                            <td class="small align-middle">
+
                                                 <form action="{{ route('book_check') }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="title" value="{{ $item['title'] }}">

@@ -16,7 +16,7 @@
 
                 </div> --}}
                 <div class="card-body">
-                    <p>登録する書籍のISBNを入力してください。</p>
+                    <p>登録する書籍の書籍名・著者名・ISBNを入力してください。</p>
                     <div>
                         @foreach ($errors->all() as $error)
                             <p>{{ $error }} </p>
@@ -24,7 +24,7 @@
                     </div>
                     <form action="/bookcheck" method="post">
                         @csrf
-                        ISBN:<input type="text" name="keyword" size="50">&nbsp;<input type="submit" value="検索"
+                        キーワード:<input type="text" name="keyword" size="50">&nbsp;<input type="submit" value="検索"
                             required>
                     </form>
                     @if ($errors->any())

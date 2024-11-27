@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginRequest;
-use Illuminate\Support\Facades\Session;
+
 
 
 class HomeController extends Controller
@@ -34,12 +34,6 @@ class HomeController extends Controller
         if (Hash::check($request->password, $user->password)) {
             auth()->login($user);
 
-            $user = User::where("email", $request->email)->first();
-
-            Session::put('userId', $user->id);
-            Session::put('name', $user->name);
-            // dd(Session::get('userId'));
-            // $request->sessdion->put('userId',$userId->id);
             return to_route('home');
         }
 

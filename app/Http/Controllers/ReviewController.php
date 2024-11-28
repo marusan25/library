@@ -61,36 +61,72 @@ class ReviewController extends Controller
             'score' => $req->score,
             'content' => $req->post_review,
             'user_id' => $req->user_id,
-            'reviewed_at' => date('Y-m-d-')
+            'reviewed_at' => date('Y-m-d')
         ]);
-        return view('reviewresult', ['bookId' => $req->book_id, 'success' => 'レビューが追加されました！', 'content' => $req->post_review]);
+        $data=[
+            "title"=> "レビューの追加",
+            "msg"=>"レビューを追加しました",
+            'content' => $req->post_review 
+        ];
+        return view('reviewresult', $data);
         // return redirect()->route('layouts.bookdetail', ['bookId' => $book->id])->with('success', 'レビューが追加されました！');
         // return redirect()->route('layouts.bookdetail', $bookId)->with('success', 'レビューが追加されました！');
     }
-
-    // レビューを削除
-    public function destroy($bookId, $reviewId)
+    // レビューを削除チェック
+    public function destroycheck(Request $req)
     {
-        $review = Review::where('book_id', $bookId)->where('id', $reviewId)->firstOrFail();
-        $review->delete();
-
-        return redirect()->route('layouts.bookdetail', $bookId)->with('success', 'レビューが削除されました！');
+        $review = Review::with('book')->where('id', $req->review_id)->first();
+        
+        return view("deletecheck", compact("review"));
     }
 
-    // レビューを編集
-    public function update(Request $request, $bookId, $reviewId)
+
+
+    // レビューを削除
+    public function destroy(Request $req)
+    {
+        $review = Review::where('id', $req->id)->first();
+        $review->delete();
+
+        $data=[
+            "title"=> "レビューの削除",
+            "msg"=>"レビューを削除しました",
+            'content' => $req->post_review 
+        ];
+
+        return view("deleteresult",$data);
+    }
+
+ // レビューを編集
+ public function updatecheck(Request $req)
+ {
+    $review = Review::with('book')->where('id', $req->review_id)->first();
+
+     return view("reviewedit",compact("review"));
+ }
+
+
+    // レビューを上書き
+    public function update(Request $request)
     {
         $request->validate([
             'score' => 'required|integer|min:1|max:5',
             'post_review' => 'required|string|max:100',
         ]);
 
-        $review = Review::where('book_id', $bookId)->where('id', $reviewId)->firstOrFail();
+        $review = Review::where('id', $request->reviewId)->first();
+
+        
         $review->update([
             'score' => $request->score,
-            'post_review' => $request->post_review,
+            'content' => $request->post_review,
         ]);
-
-        return redirect()->route('layouts.bookdetail', $bookId)->with('success', 'レビューが更新されました！');
+        // dd($review);
+        $data=[
+            "title"=> "レビューの編集",
+            "msg"=>"レビューを編集しました",
+            'content' => $request->post_review 
+        ];
+        return view("/editresult",$data);
     }
 }

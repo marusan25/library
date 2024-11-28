@@ -45,7 +45,7 @@
                                         {{-- {{dd($record)}} --}}
                                     </td>
                                     <td class="small align-middle">
-
+                                       
                                     <form action="{{ route('books.show', ['book' => $record]) }}" method="POST">
                                         @csrf
                                         {{-- <input type="hidden" name="bookId" value="{{$record->id}}"> --}}

@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Session;
+use App\Helpers\Toastr;
 
 
 class HomeController extends Controller

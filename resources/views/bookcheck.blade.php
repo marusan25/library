@@ -3,7 +3,7 @@
 @section('title', '登録する書籍の検索結果')
 
 @section('content_header')
-    
+
 @endsection
 
 @section('content')
@@ -58,9 +58,18 @@
                                                 {{ Str::limit($item['description'], 300, '...') }}</td>
                                             <td class="small align-middle">
 
-                                                <form action="{{ route('book_check') }}" method="POST">
+                                                <form action="{{ route('book_result') }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="title" value="{{ $item['title'] }}">
+                                                    <input type="hidden" name="author" value="{{ $item['author'] }}">
+                                                    <input type="hidden" name="isbn" value="{{ $item['isbn'] }}">
+                                                    <input type="hidden" name="publisher"
+                                                        value="{{ $item['publisher'] }}">
+                                                    <input type="hidden" name="price" value="{{ $item['price'] }}">
+                                                    <input type="hidden" name="thumbnail_path"
+                                                        value="{{ $item['thumbnail_path'] }}">
+                                                    <input type="hidden" name="description"
+                                                        value="{{ $item['description'] }}">
                                                     <input type="submit" class="btn btn-info btn-sm"
                                                         value="登録"></input>
                                                 </form>
@@ -71,7 +80,6 @@
                             @else
                                 <p>該当する書籍が見つかりませんでした。</p>
                         @endif
-
                         </table>
                     </div>
                 </div>

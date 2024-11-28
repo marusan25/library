@@ -7,12 +7,18 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Session;
+use App\Helpers\Toastr;
 
 
 class HomeController extends Controller
 {
     public function home(Request $request)
     {
+        // Toastr::success('aaaaa');
+        // Toastr::info('エラー');
+        // Toastr::error('すでに登録済みです');
+        // Toastr::warning('aaaaaaaaa');
+
         // ログイン後は、ユーザーモデルを auth()->user(); で取得できる
         return view('home');
     }

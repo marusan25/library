@@ -8,17 +8,7 @@
 
 @section('content')
 
-    {{-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif --}}
-
-    <h1>{{ $title }}の登録が完了しました</h1>
+    <h2>{{ $title }}の登録が完了しました</h2>
     <ul>
         <li><strong>著者:</strong> {{ $author }}</li>
         <li><strong>ISBN:</strong> {{ $isbn }}</li>
@@ -27,8 +17,6 @@
         <li><strong>サムネイル:</strong> <img src="{{ $thumbnail_path }}" alt="thumbnail"></li>
         <li><strong>説明:</strong> {{ $description }}</li>
     </ul>
-
-
 
 
 

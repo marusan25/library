@@ -22,8 +22,7 @@
                             <p>{{ $error }} </p>
                         @endforeach
                     </div>
-                    <form action="/bookcheck" method="post">
-                        @csrf
+                    <form action="/bookcheck">
                         キーワード:<input type="text" name="keyword" size="50">&nbsp;<input type="submit" value="検索">
                         <input type="reset" value="リセット">
                     </form>

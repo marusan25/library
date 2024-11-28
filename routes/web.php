@@ -29,9 +29,8 @@ Route::controller(SAController::class)->group(function () {
 
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/bookregister', 'register')->name('book_register');
-    Route::post('/bookcheck', 'check')->name('book_check');
-    Route::get('/bookcheck2', 'check2')->name('check2');
-    Route::get('/bookcheck', 'result')->name('book_back');
+    Route::get('/bookcheck', 'check')->name('book_check');
+    Route::get('/bookresult', 'show')->name('show_result');
     Route::post('/bookresult', 'result')->name('book_result');
 });
 

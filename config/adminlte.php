@@ -57,6 +57,8 @@ return [
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
+    'layout_fixed_sidebar' => true, // サイドバーを固定
+
 
 
     'classes_auth_card' => 'card-outline card-primary',

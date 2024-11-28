@@ -7,11 +7,11 @@ use App\Models\Book;
 
 class ListController extends Controller
 {
-    public function list()
-    {
-        $data=[
-            'books'=>Book::all()
-        ];
-        return view('List.list',$data);
-    }
+  public function list()
+  {
+    $data=[
+        'books'=>Book::all()
+    ];
+    return view('List.list',$data);
+  }
 }

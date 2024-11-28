@@ -17,26 +17,34 @@ class ReviewController extends Controller
         // セッションから userId を取得
         $userId = Session::get("userId", 0);
 
-
+// dd($req->book);
         // ユーザー情報とその関連するレビューを取得
-        $records = Review::with('user:id,name', 'book')->get();
+
+        $records = Book::where("id",$req->book)->get();
+        // dd($records);
         // with('reviews', "books")->findOrFail($userId);
         // $book = Book::where("id", $req->bookId)->first();
-
+        $reviews = Review::with('user:id,name', 'book')->where("book_id",$req->book)->get();
+        // dd($reviews);
         // $book = Book::where("id", $req->book)->first();
         // dd($book);
         // dd($book);
         // 必要ならレビューを取得
         // $review = $user->reviews;
+        // dd($records);
         $totalScore = 0;
         $count = 0;
-        foreach ($records as $record) {
-            $totalScore += $record->score; // 点数を合計
+        $avg=0;
+        foreach ($reviews as $review) {
+            $totalScore += $review->score; // 点数を合計
             $count++;
         }
-        $avg = round($totalScore / $count, 1);
-
-        return view('bookdetail', compact('records', 'avg'));
+        
+        if(count($reviews)>0){
+            $avg = round($totalScore / $count, 1);
+        }
+// dd($avg);
+        return view('bookdetail', compact('records', 'avg','reviews'));
         // $userId = Session::get("userId",0);
         // $book = User::where("id",$userId)->get();
         // return view('/bookdetail', compact('book'));
@@ -66,7 +74,8 @@ class ReviewController extends Controller
         $data=[
             "title"=> "レビューの追加",
             "msg"=>"レビューを追加しました",
-            'content' => $req->post_review 
+            'content' => $req->post_review,
+            'book_id' => $req->book_id
         ];
         return view('reviewresult', $data);
         // return redirect()->route('layouts.bookdetail', ['bookId' => $book->id])->with('success', 'レビューが追加されました！');
@@ -75,9 +84,10 @@ class ReviewController extends Controller
     // レビューを削除チェック
     public function destroycheck(Request $req)
     {
+        $bookId = $req->book_id;
         $review = Review::with('book')->where('id', $req->review_id)->first();
         
-        return view("deletecheck", compact("review"));
+        return view("deletecheck", compact("review","bookId"));
     }
 
 
@@ -91,7 +101,8 @@ class ReviewController extends Controller
         $data=[
             "title"=> "レビューの削除",
             "msg"=>"レビューを削除しました",
-            'content' => $req->post_review 
+            'content' => $req->post_review,
+            'book_id' => $req->bookId
         ];
 
         return view("deleteresult",$data);
@@ -100,9 +111,10 @@ class ReviewController extends Controller
  // レビューを編集
  public function updatecheck(Request $req)
  {
+    $bookId = $req->book_id;
     $review = Review::with('book')->where('id', $req->review_id)->first();
 
-     return view("reviewedit",compact("review"));
+     return view("reviewedit",compact("review","bookId"));
  }
 
 
@@ -125,7 +137,8 @@ class ReviewController extends Controller
         $data=[
             "title"=> "レビューの編集",
             "msg"=>"レビューを編集しました",
-            'content' => $request->post_review 
+            'content' => $request->post_review,
+            'book_id' => $request->bookId
         ];
         return view("/editresult",$data);
     }

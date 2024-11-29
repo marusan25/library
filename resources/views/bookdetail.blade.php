@@ -13,6 +13,10 @@
             justify-content: center;
             display: flex;
         }
+
+        td {
+            text-align: center;
+        }
     </style>
 @endsection
 

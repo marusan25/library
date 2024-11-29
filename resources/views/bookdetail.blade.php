@@ -83,21 +83,21 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="small align-middle">{{ $count }}</td>
-                                        <td class="small align-middle">{{ $avg }}</td>
+                                        <td class="small align-middle">{{ $count }}件</td>
+                                        <td class="small align-middle">{{ $avg }}点</td>
                                 @endif
                             @endforeach
                             </tr>
                         </tbody>
                     </table>
                     </table>
-                    <div class="row my-5">
+                    {{-- <div class="row my-5">
                         <div class="col">
                             <h5 id="target">【平均点:{{ $avg }}点】</h5>
 
                             <h5>【レビュー：{{ $count }}件】</h5>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <h2>レビューを追加</h2>
                     <div class="card">

@@ -83,13 +83,13 @@
                         @else
                             <p>該当する書籍が見つかりませんでした。</p>
                         @endif
-                        {{ $items->links() }}
-                        <style>
+                        {{-- {{ $items->links() }} --}}
+                        {{-- <style>
                             .pagination {
                                 justify-content: center;
                                 display: flex;
                             }
-                        </style>
+                        </style> --}}
                     </div>
                 </div>
             </div>

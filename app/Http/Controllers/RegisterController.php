@@ -56,17 +56,18 @@ class RegisterController extends Controller
 
                     // ページネーションを適用
                     // $currentPage = LengthAwarePaginator::resolveCurrentPage();
-                    $currentPage = $req->get('page', 1);
-                    $perPage = 5; // 1ページあたりの件数
-                    $currentItems = array_slice($items, ($currentPage - 1) * $perPage, $perPage);
 
-                    $paginatedItems = new LengthAwarePaginator(
-                        $currentItems, // 現在のページのデータ
-                        count($items), // 全データの件数
-                        $perPage, // ページあたりの件数
-                        $currentPage, // 現在のページ番号
-                        ['path' => $req->url(), 'query' => $req->query()] // ページネーションリンクのベースURL
-                    );
+                    // $currentPage = $req->get('page', 1);
+                    // $perPage = 5; // 1ページあたりの件数
+                    // $currentItems = array_slice($items, ($currentPage - 1) * $perPage, $perPage);
+
+                    // $paginatedItems = new LengthAwarePaginator(
+                    //     $currentItems, // 現在のページのデータ
+                    //     count($items), // 全データの件数
+                    //     $perPage, // ページあたりの件数
+                    //     $currentPage, // 現在のページ番号
+                    //     ['path' => $req->url(), 'query' => $req->query()] // ページネーションリンクのベースURL
+                    // );
                 }
             }
             // dd($bodyArray);
@@ -76,7 +77,7 @@ class RegisterController extends Controller
 
         // データをビューに渡す
         return view('bookcheck', [
-            'items' => $paginatedItems,
+            'items' => $items,
             'keyword' => $keyword,
         ]);
     }

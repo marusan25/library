@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', '検索画面')
-
+<link rel="icon" type="image/png" href="images/search.png">
 @section('content_header')
     <div class="col-6">
         <h1>書籍検索</h1>

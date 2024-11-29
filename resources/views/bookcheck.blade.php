@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', '登録する書籍の検索結果')
-
+<link rel="icon" type="image/png" href="images/plus.png">
 @section('content_header')
     <div class="col-6">
         <h1>書籍登録</h1>

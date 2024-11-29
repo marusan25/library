@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', '書籍登録')
-
+<link rel="icon" type="image/png" href="images/plus.png">
 @section('content_header')
     <div class="col-6">
         <h1>書籍登録</h1>
@@ -50,7 +50,8 @@
         <marquee scrollamount="100" truespeed><img src="images/search.png" style="width: 1000%; max-width: 100px;">
         </marquee>
         <marquee direction="left"><img src="images/search.png" style="width: 400%; max-width: 100px;"></marquee>
-        <marquee scrollamount="100" truespeed direction="right"><img src="images/search.png" style="width: 1000%; max-width: 100px;">
+        <marquee scrollamount="100" truespeed direction="right"><img src="images/search.png"
+                style="width: 1000%; max-width: 100px;">
         </marquee>
     </marquee>
 
@@ -61,5 +62,9 @@
 @endpush
 
 @push('css')
-    {{-- css --}}
+    <style>
+        .change {
+            cursor: url(images/book.png), default;
+        }
+    </style>
 @endpush

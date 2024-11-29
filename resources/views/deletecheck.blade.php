@@ -11,10 +11,10 @@
         {{-- {{dd($review)}} --}}
         <form action="/deleteresult" method="post">
         @csrf
+        <input type="hidden" name="bookId" value="{{$bookId}}">
         <input type="hidden" name="id" value="{{$review->id}}">
         <input type="hidden" name="post_review" value="{{$review->content}}">
         <tr>
-            
             <td>{{Session::get("name",0)}}</td>
             <td>{{$review->content}}</td>
             <input type="submit" value="削除">
@@ -22,6 +22,6 @@
     </form>
     </table>
     <br>
-    <a href="/bookdetail">前のページに戻る</a>
+    <a href="/bookdetail?book={{$bookId}}">前のページに戻る</a>
 </body>
 </html>

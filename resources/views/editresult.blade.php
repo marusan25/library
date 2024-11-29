@@ -14,6 +14,6 @@
         </tr>
     </table>
     <br>
-    <a href="/bookdetail">前のページに戻る</a>
+    <a href="/bookdetail?book={{$book_id}}">前のページに戻る</a>
 </body>
 </html>

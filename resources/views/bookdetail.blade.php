@@ -11,12 +11,12 @@
     {{-- {{dd($records)}} --}}
     @foreach ($records as $record)
     @if ($loop->first)
-    <h1>{{ $record->book->title }}</h1>
-    <p>著者: {{ $record->book->author }}</p>
-    <p>出版社: {{ $record->book->publisher }}</p>
-    <p>価格: ¥{{ number_format($record->book->amount) }}</p>
-    <img src="{{ $record->book->thumbnail_path }}" alt="Thumbnail">
-    <p>{{ $record->book->description }}</p>
+    <h1>{{ $record->title }}</h1>
+    <p>著者: {{ $record->author }}</p>
+    <p>出版社: {{ $record->publisher }}</p>
+    <p>価格: ¥{{ number_format($record->amount) }}</p>
+    <img src="{{ $record->thumbnail_path }}" alt="Thumbnail">
+    <p>{{ $record->description }}</p>
     
     @endif
     @endforeach
@@ -26,7 +26,7 @@
     <form action="/reviewresult" method="POST">
         @csrf
         @foreach ($records as $record)
-        <input type="hidden" name="book_id" value="{{$record->book->id}}">
+        <input type="hidden" name="book_id" value="{{$record->id}}">
         @endforeach
         <input type="number" name="score" placeholder="スコア (1-5)" min="1" max="5" required>
         <textarea name="post_review" placeholder="レビュー内容" required></textarea>
@@ -40,23 +40,23 @@
             <div class="row">
                 <div class="col-12">
                     
-            @foreach ($records as $record)
+            @foreach ($reviews as $review)
             <div class="card">
         
-            <p>スコア: {{ $record->score }}</p>
-            <p>コメント: {{ $record->content }}</p>
-            <p>投稿者: {{ $record->user->name }}</p>
+            <p>スコア: {{ $review->score }}</p>
+            <p>コメント: {{ $review->content }}</p>
+            <p>投稿者: {{ $review->user->name }}</p>
 
             <!-- 編集・削除フォーム -->
             {{-- {{dd(Session::get('userId'))}} --}}
-            @if($record->user->id === Session::get('userId',0))
-            <form action="{{ route('reviews.destroycheck', ["book_id" => $record->book->id, "review_id" => $record->id]) }}" method="POST">
+            @if($review->user->id === Session::get('userId',0))
+            <form action="{{ route('reviews.destroycheck', ["book_id" => $review->book->id, "review_id" => $review->id]) }}" method="POST">
                 @csrf
                 {{-- @method('DELETE') --}}
                 <button type="submit">削除</button>
             </form>
 
-            <form action="{{ route('reviews.updatecheck', ["book_id" => $record->book->id, "review_id" => $record->id]) }}" method="POST">
+            <form action="{{ route('reviews.updatecheck', ["book_id" => $review->book->id, "review_id" => $review->id]) }}" method="POST">
                 @csrf
                 {{-- @method('PUT') --}}
                 {{-- <input type="text" name="post_review" value="{{ $record->content }}">

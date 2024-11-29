@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Exception;
 use App\Models\Book;
 use App\Helpers\Toastr;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class RegisterController extends Controller
 {
@@ -52,6 +53,20 @@ class RegisterController extends Controller
                         'thumbnail_path' => $volumeInfo['imageLinks']['thumbnail'] ?? '',
                         'description' => $volumeInfo['description'] ?? '説明なし',
                     ];
+
+                    // ページネーションを適用
+                    // $currentPage = LengthAwarePaginator::resolveCurrentPage();
+                    $currentPage = $req->get('page', 1);
+                    $perPage = 5; // 1ページあたりの件数
+                    $currentItems = array_slice($items, ($currentPage - 1) * $perPage, $perPage);
+
+                    $paginatedItems = new LengthAwarePaginator(
+                        $currentItems, // 現在のページのデータ
+                        count($items), // 全データの件数
+                        $perPage, // ページあたりの件数
+                        $currentPage, // 現在のページ番号
+                        ['path' => $req->url(), 'query' => $req->query()] // ページネーションリンクのベースURL
+                    );
                 }
             }
             // dd($bodyArray);
@@ -59,11 +74,11 @@ class RegisterController extends Controller
             return redirect()->back()->withErrors(['書籍情報を取得できませんでした。']);
         }
 
-
         // データをビューに渡す
         return view('bookcheck', [
-            'items' => $items,
+            'items' => $paginatedItems,
             'keyword' => $keyword,
+            // 'paginatedItems' => $paginatedItems
         ]);
     }
 
@@ -92,7 +107,7 @@ class RegisterController extends Controller
 
         // データを保存
         $books->save();
-        Toastr::success($books->title."を登録しました。");
+        Toastr::success($books->title . "を登録しました。");
 
         // 保存後はその本のデータを表示するためにshowメソッドを呼び出す
         return redirect()->route('show_result', ['id' => $books->id]);
@@ -113,6 +128,7 @@ class RegisterController extends Controller
             'price' => $book->amount ?? '不明',
             'thumbnail_path' => $book->thumbnail_path,
             'description' => $book->description ?? '説明なし',
+
         ];
 
         return view('bookresult', $data);

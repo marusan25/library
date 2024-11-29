@@ -77,10 +77,17 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
-                            @else
-                                <p>該当する書籍が見つかりませんでした。</p>
+                            </table>
+                        @else
+                            <p>該当する書籍が見つかりませんでした。</p>
                         @endif
-                        </table>
+                        {{ $items->links() }}
+                        <style>
+                            .pagination {
+                                justify-content: center;
+                                display: flex;
+                            }
+                        </style>
                     </div>
                 </div>
             </div>
@@ -94,4 +101,5 @@
 
 @push('css')
     {{-- css --}}
+    
 @endpush
